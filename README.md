@@ -1,2 +1,2 @@
 # ML library C
- Our library for practice
+ Machine learning liabriary, written in C, for practice
