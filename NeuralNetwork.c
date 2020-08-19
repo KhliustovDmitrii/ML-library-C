@@ -3,11 +3,32 @@
 #include <math.h>
 #include "NeuralNetwork.h"
 
-int learn(neuron * first, neuron * last, double rate, int epoch){
-int i;
+int learn(neuron * first, neuron * last, double rate, int epoch, double ** data, double * response){
+int i, n, j, num_neurons, k;
+double* out;
+neuron * current;
+n = first.output_number;
+current = first;
+num_neurons = 0;
+while(current.output_id[0]!=last){
+    num_neurons+=current.output_number;
+    current = current.output_id[0];
+}
+out = (double*)malloc(num_neurons*sizeof(double));
 for(i = 0; i < epoch; i++){
+    current = first;
+    k = 0;
+    work(first, last, data[i], n);
+    while(current.output_id[0]!=last){
+        for(j = 0; j < current.output_number; j++){
+                out[k] = current.output_id[j];
+                k++;
+        }
+        current = current.output_id[0];
+    }
 
 }
+free(out);
 }
 
 void output(neuron * n){
